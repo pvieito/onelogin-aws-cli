@@ -9,6 +9,7 @@
 # Temporary Items
 *.tmp
 *.tmp.*
+/dist
 
 # Virtual Environments
 /venv*/
