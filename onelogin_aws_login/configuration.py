@@ -1,7 +1,7 @@
 """Static User Configuration models"""
 import configparser
 
-from onelogin_aws_cli.userquery import user_choice
+from onelogin_aws_login.userquery import user_choice
 
 
 class ConfigurationFile(configparser.ConfigParser):

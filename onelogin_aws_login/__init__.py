@@ -14,9 +14,9 @@ from requests import get
 
 from onelogin.api.client import OneLoginClient
 
-from onelogin_aws_cli.configuration import Section
-from onelogin_aws_cli.credentials import MFACredentials, UserCredentials
-from onelogin_aws_cli.userquery import user_role_prompt
+from onelogin_aws_login.configuration import Section
+from onelogin_aws_login.credentials import MFACredentials, UserCredentials
+from onelogin_aws_login.userquery import user_role_prompt
 
 CONFIG_FILENAME = ".onelogin-aws.config"
 DEFAULT_CONFIG_PATH = os.path.join(os.path.expanduser("~"), CONFIG_FILENAME)

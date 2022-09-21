@@ -7,7 +7,7 @@ import os
 
 import pkg_resources
 
-from onelogin_aws_cli import DEFAULT_CONFIG_PATH, OneloginAWS
+from onelogin_aws_login import DEFAULT_CONFIG_PATH, OneloginAWS
 
 
 class OneLoginAWSArgumentParser(argparse.ArgumentParser):

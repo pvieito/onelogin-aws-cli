@@ -8,8 +8,8 @@ from typing import List
 import keyring
 from onelogin.api.models.device import Device
 
-from onelogin_aws_cli.configuration import Section
-from onelogin_aws_cli.userquery import user_choice
+from onelogin_aws_login.configuration import Section
+from onelogin_aws_login.userquery import user_choice
 
 
 class MFACredentials(object):

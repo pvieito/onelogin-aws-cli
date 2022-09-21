@@ -4,9 +4,9 @@ Collections of entrypoints
 import sys
 from os import environ
 
-from onelogin_aws_cli import OneloginAWS
-from onelogin_aws_cli.argparse import OneLoginAWSArgumentParser
-from onelogin_aws_cli.configuration import ConfigurationFile
+from onelogin_aws_login import OneloginAWS
+from onelogin_aws_login.argparse import OneLoginAWSArgumentParser
+from onelogin_aws_login.configuration import ConfigurationFile
 
 
 def _load_config(parser, config_file: ConfigurationFile, args=sys.argv[1:]):
