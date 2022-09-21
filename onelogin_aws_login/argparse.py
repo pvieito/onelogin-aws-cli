@@ -43,6 +43,12 @@ class OneLoginAWSArgumentParser(argparse.ArgumentParser):
         )
 
         self.add_argument(
+            '-p', '--password',
+            action=EnvDefault, required=False,
+            help='Specify OneLogin password'
+        )
+
+        self.add_argument(
             '-d', '--duration-seconds', type=int,
             dest='duration_seconds',
             action=EnvDefault, required=False,

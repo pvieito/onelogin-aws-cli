@@ -3,10 +3,9 @@ Handles the saving and loading of username and password in a secure
 manner
 """
 import getpass
-from typing import List
-
 import keyring
 from onelogin.api.models.device import Device
+from typing import List
 
 from onelogin_aws_login.configuration import Section
 from onelogin_aws_login.userquery import user_choice
@@ -84,11 +83,8 @@ class UserCredentials(object):
 
     def __init__(self, config: Section):
         self.username = config.get('username')
+        self.password = config.get('password')
         self.configuration = config
-
-        # This is `None`, as the password should be be emitted from this class
-        # and should never be loaded from any other source outside this class
-        self.password = None
 
     @property
     def has_password(self) -> bool:
@@ -132,29 +128,34 @@ class UserCredentials(object):
 
         # Do we have a password?
         if not self.has_password:
-            # Can we load the password from os keychain?
-            if self.configuration.can_save_password:
+            # Can we load the password from the configuration?
+            if self.configuration.get('password'):
+                self.password = self.configuration['password']
 
-                # Load the password from OS keychain
-                self._load_password_from_keychain()
+            if not self.has_password:
+                # Can we load the password from os keychain?
+                if self.configuration.can_save_password:
 
-                # Could not find password in OS keychain
-                if not self.has_password or reset_password:
-                    # Ask user for password
+                    # Load the password from OS keychain
+                    self._load_password_from_keychain()
+
+                    # Could not find password in OS keychain
+                    if not self.has_password or reset_password:
+                        # Ask user for password
+                        self._prompt_user_password()
+                        # Remember to save password
+                        save_password = True
+
+                    if not self.has_password:
+                        # We still don't have a password and have exhausted all
+                        # places to load one from.
+                        raise RuntimeError(
+                            "Could not load password from secure store " +
+                            "nor from user input"
+                        )
+                else:
+                    # Ask the user
                     self._prompt_user_password()
-                    # Remember to save password
-                    save_password = True
-
-                if not self.has_password:
-                    # We still don't have a password and have exhausted all
-                    # places to load one from.
-                    raise RuntimeError(
-                        "Could not load password from secure store " +
-                        "nor from user input"
-                    )
-            else:
-                # Ask the user
-                self._prompt_user_password()
 
             if save_password:
                 # We decided to save the password

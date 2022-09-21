@@ -4,7 +4,7 @@ PACKAGE_NAME = "onelogin_aws_login"
 
 setuptools.setup(
     name=PACKAGE_NAME,
-    version="1.0",
+    version="1.3",
     author="",
     author_email="",
     description="",
