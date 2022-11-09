@@ -4,7 +4,7 @@ PACKAGE_NAME = "onelogin_aws_login"
 
 setuptools.setup(
     name=PACKAGE_NAME,
-    version="1.3",
+    version="1.4",
     author="",
     author_email="",
     description="",
@@ -15,7 +15,7 @@ setuptools.setup(
     py_modules=[PACKAGE_NAME],
     install_requires=[
         "boto3",
-        "onelogin",
+        "onelogin==2.0.4",
         "keyring",
         "requests",
     ],

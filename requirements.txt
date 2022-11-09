@@ -1,4 +1,4 @@
 boto3
-onelogin
+onelogin==2.0.4
 keyring
 requests
